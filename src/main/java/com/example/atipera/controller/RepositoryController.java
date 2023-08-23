@@ -10,16 +10,34 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
+/**
+ * Controller class for handling repository-related API endpoints.
+ *
+ * @since 22-08-2023
+ * @author Wiktor Kulesza
+ */
 @RestController
 @RequestMapping("/api/v1")
 public class RepositoryController {
 
     private final RepositoryDetailsService repositoryDetailsService;
 
+    /**
+     * Constructor for RepositoryController.
+     *
+     * @param repositoryDetailsService Service responsible for retrieving repository details.
+     */
     public RepositoryController(RepositoryDetailsService repositoryDetailsService) {
         this.repositoryDetailsService = repositoryDetailsService;
     }
 
+    /**
+     * Retrieves details of repositories belonging to a user.
+     *
+     * @param acceptHeader Header specifying the accepted response format (e.g., JSON, XML).
+     * @param username     The username of the user whose repositories details are to be retrieved.
+     * @return ResponseEntity containing repository details or an appropriate error response.
+     */
     @GetMapping(path = "/repos/{username}")
     public ResponseEntity<?> getUserRepositoriesDetails(@RequestHeader(value = "Accept") String acceptHeader, @PathVariable String username) {
         try {

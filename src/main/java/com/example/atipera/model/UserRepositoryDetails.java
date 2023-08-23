@@ -5,6 +5,12 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * Class representing details of a user's repository as name owner username and branches details.
+ *
+ * @since 22-08-2023
+ * @author Wiktor Kulesza
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

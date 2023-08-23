@@ -17,6 +17,13 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Service class for interacting with the GitHub API.
+ * This class retrieves repository and branch details from the GitHub API.
+ *
+ * @since 22-08-2023
+ * @author Wiktor Kulesza
+ */
 @Service
 public class GithubApiService {
 
@@ -31,6 +38,13 @@ public class GithubApiService {
         objectMapper.registerModule(module);
     }
 
+    /**
+     * Retrieves repository details for a given username.
+     *
+     * @param username The GitHub username.
+     * @return List of UserRepositoryDetails representing user's repositories.
+     * @throws JsonProcessingException if there's an issue with JSON processing.
+     */
     public List<UserRepositoryDetails> getRepositoriesDetails(String username) throws JsonProcessingException {
         String result = getGithubApiResponse(getRepositoriesDetailsApiUrl(username));
         return Arrays.asList(objectMapper.readValue(result, UserRepositoryDetails[].class));
@@ -44,6 +58,13 @@ public class GithubApiService {
         return ApiConstant.GITHUB_API_URL + ApiConstant.USERS + "/" + username + ApiConstant.REPOS;
     }
 
+    /**
+     * Retrieves branch details for a given repository.
+     *
+     * @param repository The user repository details.
+     * @return List of BranchDetails representing repository's branches.
+     * @throws GithubApiException if there's an issue with the GitHub API.
+     */
     public List<BranchDetails> getBranchesDetails(UserRepositoryDetails repository) {
         try {
             String apiUrl = getBranchDetailsApiUrl(repository);

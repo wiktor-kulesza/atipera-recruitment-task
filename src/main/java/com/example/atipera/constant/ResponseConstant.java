@@ -1,5 +1,11 @@
 package com.example.atipera.constant;
 
+/**
+ * Constants class holding constants for API call responses.
+ *
+ * @since 22-08-2023
+ * @author Wiktor Kulesza
+ */
 public class ResponseConstant {
 
     public static final String USER_NOT_FOUND = "User not found";
